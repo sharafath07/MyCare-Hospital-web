@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: "/MyCare-Hosital-web", // <-- EXACT repo name with slashes
+  base: "/MyCare-Hospital-web", // <-- EXACT repo name with slashes
 })
