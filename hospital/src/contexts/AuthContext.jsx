@@ -116,8 +116,19 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    // Clear user state
     setUser(null);
+    // Remove from localStorage
     localStorage.removeItem('hospital_user');
+    // Clear any other session data if needed
+    sessionStorage.clear();
+    
+    // Optional: Call logout API endpoint here
+    // try {
+    //   await fetch('/api/logout', { method: 'POST' });
+    // } catch (error) {
+    //   console.error('Logout API call failed:', error);
+    // }
   };
 
   return (

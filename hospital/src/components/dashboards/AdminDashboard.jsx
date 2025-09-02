@@ -19,6 +19,7 @@ import { sampleDoctors, sampleAppointments, specializations } from '../../data/s
 import DoctorCard from '../common/DoctorCard';
 import AppointmentCard from '../common/AppointmentCard';
 import ResponsiveSidebar from '../layout/ResponsiveSidebar';
+import LogoutButton from '../common/LogoutButton';
 
 const AdminDashboard = ({ currentView, onViewChange }) => {
   const { user } = useAuth();
@@ -200,6 +201,15 @@ const AdminDashboard = ({ currentView, onViewChange }) => {
                 <p className="text-sm text-gray-600">Review and approve appointments</p>
               </div>
             </button>
+
+            <div className="pt-4 border-t border-gray-200">
+              <LogoutButton 
+                onLogoutSuccess={() => onViewChange('home')}
+                className="w-full justify-center"
+              >
+                Sign Out of Admin Panel
+              </LogoutButton>
+            </div>
           </div>
         </div>
       </div>

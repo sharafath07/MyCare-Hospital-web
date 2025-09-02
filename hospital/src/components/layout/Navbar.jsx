@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Menu, X, Heart, User, LogOut } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import LogoutButton from '../common/LogoutButton';
 
 const Navbar = ({ currentView, onViewChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
-  const handleLogout = () => {
-    logout();
+  const handleLogoutSuccess = () => {
     onViewChange('home');
     setIsProfileOpen(false);
   };
@@ -75,13 +75,10 @@ const Navbar = ({ currentView, onViewChange }) => {
                     <div className="px-4 py-2 text-sm text-gray-500 border-b">
                       {user.email}
                     </div>
-                    <button
-                      onClick={handleLogout}
-                      className="flex items-center space-x-2 w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      <LogOut className="h-4 w-4" />
-                      <span>Logout</span>
-                    </button>
+                    <LogoutButton 
+                      variant="menu"
+                      onLogoutSuccess={handleLogoutSuccess}
+                    />
                   </div>
                 )}
               </div>
@@ -129,13 +126,13 @@ const Navbar = ({ currentView, onViewChange }) => {
                   <div className="px-3 py-2 text-sm text-gray-500">
                     {user.name} ({user.email})
                   </div>
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center space-x-2 w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-                  >
-                    <LogOut className="h-4 w-4" />
-                    <span>Logout</span>
-                  </button>
+                  <div className="px-3 py-2">
+                    <LogoutButton 
+                      variant="link"
+                      onLogoutSuccess={handleLogoutSuccess}
+                      className="text-base font-medium hover:text-blue-600"
+                    />
+                  </div>
                 </div>
               )}
             </div>

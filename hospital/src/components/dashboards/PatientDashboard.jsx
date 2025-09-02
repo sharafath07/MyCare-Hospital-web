@@ -6,6 +6,7 @@ import DoctorCard from '../common/DoctorCard';
 import AppointmentCard from '../common/AppointmentCard';
 import AppointmentForm from '../common/AppointmentForm';
 import ResponsiveSidebar from '../layout/ResponsiveSidebar';
+import LogoutButton from '../common/LogoutButton';
 
 const PatientDashboard = ({ currentView, onViewChange }) => {
   const { user } = useAuth();
@@ -481,9 +482,17 @@ const PatientDashboard = ({ currentView, onViewChange }) => {
             </div>
 
             <div className="flex justify-end">
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                Update Profile
-              </button>
+              <div className="flex space-x-4">
+                <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                  Update Profile
+                </button>
+                <LogoutButton 
+                  onLogoutSuccess={() => onViewChange('home')}
+                  className="px-6 py-2"
+                >
+                  Sign Out
+                </LogoutButton>
+              </div>
             </div>
           </div>
         </div>

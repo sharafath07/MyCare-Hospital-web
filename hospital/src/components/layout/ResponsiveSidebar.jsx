@@ -9,13 +9,15 @@ import {
   Settings,
   Heart,
   FileText,
-  Clock
+  Clock,
+  LogOut
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import LogoutButton from '../common/LogoutButton';
 
 const ResponsiveSidebar = ({ currentView, onViewChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const patientMenuItems = [
     { key: 'patient-dashboard', label: 'Dashboard', icon: Home },
@@ -40,6 +42,10 @@ const ResponsiveSidebar = ({ currentView, onViewChange }) => {
     setIsOpen(false);
   };
 
+  const handleLogoutSuccess = () => {
+    onViewChange('home');
+    setIsOpen(false);
+  };
   return (
     <>
       {/* Mobile Menu Button */}
@@ -119,9 +125,19 @@ const ResponsiveSidebar = ({ currentView, onViewChange }) => {
 
         {/* Footer */}
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t bg-gray-50">
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <Clock className="h-4 w-4" />
-            <span>24/7 Emergency: 911</span>
+          <div className="space-y-3">
+            <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <Clock className="h-4 w-4" />
+              <span>24/7 Emergency: 911</span>
+            </div>
+            <LogoutButton 
+              variant="link"
+              onLogoutSuccess={handleLogoutSuccess}
+              className="text-sm text-gray-600 hover:text-red-600"
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Sign Out
+            </LogoutButton>
           </div>
         </div>
       </div>
